@@ -22,13 +22,16 @@ new Webridge\LargeFileBundle\WebridgeLargeFileBundle(),
 
 - Import the bundle routes in routing.yml
 
+```
 webridge_largefile:
     resource: "@WebridgeLargeFileBundle/Resources/config/routing.yml"
     prefix:   /
+```
 
 - Configure the OneupUploaderBundle mappings
 
 eg:
+```
 oneup_uploader:
     mappings:
         video:
@@ -36,12 +39,14 @@ oneup_uploader:
             max_size: 47063040
             storage:
                 directory: uploads%upload_video_rel_directory%
+```
 
 Usage
 -------
 
 Add a field of type largefile to your form
 
+```
 $builder
     ->add(
         'videoFile',
@@ -52,6 +57,7 @@ $builder
             'mimeTypesMessage' => "Upload only mp4",
             'maxSizeMessage' => "Maximum size is 40 MB"
         ],
+```
 
 The field will be displayed as an input file styled as a button using bootstrap classes
 
