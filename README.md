@@ -40,6 +40,18 @@ oneup_uploader:
                 directory: uploads%upload_video_rel_directory%
 ```
 
+- Add WebridgeLargeFileBundle to assetic's bundles
+
+- Add the following assetic assets alias:
+
+```
+fileupload:
+    inputs:
+        - '../vendor/blueimp/jquery-file-upload/js/vendor/jquery.ui.widget.js'
+        - '../vendor/blueimp/jquery-file-upload/js/jquery.iframe-transport.js'
+        - '../vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js'
+```
+
 Usage
 -------
 
