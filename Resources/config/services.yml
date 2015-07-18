@@ -1,0 +1,21 @@
+services:
+
+    webridge_largefile.upload_listener:
+        class: Webridge\LargeFileBundle\EventListener\UploadListener
+        arguments: ["uploads%upload_video_rel_directory%"]
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+
+    webridge_largefile_bundle.largefile_type:
+        class: Webridge\LargeFileBundle\Form\LargeFileType
+        tags:
+            - { name: form.type, alias: largefile }
+
+    kernel.listener.largefile:
+        class: Webridge\LargeFileBundle\EventListener\KernelResponseListener
+        arguments: [@twig]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    webridge.largefile_error_handler:
+        class: Webridge\LargeFileBundle\ErrorHandler\LargeFileErrorHandler

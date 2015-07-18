@@ -1,0 +1,11 @@
+div.largefile_progress {    
+    display: none;
+    float: none;
+    width: 100%;
+    margin-top: 10px;
+    height: 20px;
+}
+
+.largefile_progress .bar {
+    width: 0px;
+}

@@ -1,0 +1,49 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block largefile_widget %}
+    
+    {% stylesheets 
+        '@WebridgeLargeFileBundle/Resources/public/css/largefile.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    {% spaceless %}
+
+    <span class="file-input btn btn-block panel-heading-highlighted btn-file">
+        {{ label }}
+
+        {{ form_widget(
+                form,
+                {'attr': {
+                    'class': form.vars.attr.class ~ ' largefile',
+                    'data-largefile-field': largefile_field,
+                    'data-mimeTypesMessage': mimeTypesMessage,
+                    'data-maxSizeMessage': maxSizeMessage,
+                    'data-url': oneup_uploader_endpoint(largefile_media)
+                }}
+           ) 
+        }}
+        {{ form_widget(
+                attribute(form.parent, largefile_field),
+                {
+                    'id': largefile_field
+                }
+           ) 
+        }}
+    </span>
+
+    {% endspaceless %}
+
+    <div class="error">
+        <ul>
+            <li id="{{largefile_field}}_error">
+            </li>
+        </ul>
+    </div>
+
+    <div id="{{largefile_field}}_progress" class="largefile_progress progress">
+        <span class="bar progress-bar"></span>
+    </div>
+
+{% endblock %}

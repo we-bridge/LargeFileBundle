@@ -1,0 +1,36 @@
+{
+    "name": "we-bridge/largefile-bundle",
+    "type": "symfony-bundle",
+    "description": "Handles large file uploads in Symfony2. Features included: Progress bar.",
+    "keywords": ["fileupload", "upload", "Form type upload", "Upload progress bar"],
+    "homepage": "http://we-bridge.net",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jerome Benezech",
+            "email": "jeromeb@we-bridge.net",
+            "homepage": "https://github.com/jbenezech",
+            "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "symfony/framework-bundle": ">=2.2",
+        "symfony/finder": ">=2.2.0",
+        "oneup/uploader-bundle": "~1.3",
+        "blueimp/jQuery-File-Upload": "~9.10"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "~4.1"
+    },
+
+    "suggest": {
+    },
+
+    "autoload": {
+        "psr-0": { "Webridge\\LargeFileBundle": "" }
+    },
+
+    "target-dir": "Webridge/LargeFileBundle"
+}
