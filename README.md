@@ -8,7 +8,6 @@ At the moment, it simply adds a progress bar during file upload.
 Dependencies
 -------------
 
-This bundle requires
 - OneupUploaderBundle (https://github.com/1up-lab/OneupUploaderBundle)
 - JQuery file upload (https://github.com/blueimp/jQuery-File-Upload)
 
