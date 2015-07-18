@@ -21,7 +21,7 @@ new Webridge\LargeFileBundle\WebridgeLargeFileBundle(),
 
 - Import the bundle routes in routing.yml
 
-```
+```yaml
 webridge_largefile:
     resource: "@WebridgeLargeFileBundle/Resources/config/routing.yml"
     prefix:   /
@@ -30,7 +30,7 @@ webridge_largefile:
 - Configure the OneupUploaderBundle mappings
 
 eg:
-```
+```yaml
 oneup_uploader:
     mappings:
         video:
@@ -44,7 +44,7 @@ oneup_uploader:
 
 - Add the following assetic assets alias:
 
-```
+```yaml
 fileupload:
     inputs:
         - '../vendor/blueimp/jquery-file-upload/js/vendor/jquery.ui.widget.js'
@@ -57,7 +57,7 @@ Usage
 
 Add a field of type largefile to your form
 
-```
+```php
 $builder
     ->add(
         'videoFile',
@@ -66,8 +66,9 @@ $builder
             'label' => 'Upload Videos',
             'media' => 'video',
             'mimeTypesMessage' => "Upload only mp4",
-            'maxSizeMessage' => "Maximum size is 40 MB"
+            'maxSizeMessage' => "Maximum size is 40 MB",
         ],
+    )
 ```
 
 The field will be displayed as an input file styled as a button using bootstrap classes
