@@ -15,7 +15,6 @@ var LargeFile = (function() {
             uploadProgress(this, progress);
         },
         error: function(e, data) {
-            console.log('error');
             var inputField = document.getElementById(this.fileInput[0].id);
             uploadFinished(inputField, false);
         },
@@ -39,6 +38,8 @@ var LargeFile = (function() {
             inputField.removeAttribute('required');                
             uploadFinished(inputField, true);
 
+            //show preview of loaded item
+            showPreview(inputField, files.files[0].url);
         }
         });
     };
@@ -100,6 +101,21 @@ var LargeFile = (function() {
             inputField.getAttribute('data-largefile-field') + 
             ERROR_SUFFIX 
         );
+    };
+
+    var showPreview = function (inputField, url) {
+        if (inputField.hasAttribute('data-previewcontainer') &&
+            inputField.getAttribute('data-previewcontainer') != ''
+        ) {
+            var container = document.getElementById(
+                inputField.getAttribute('data-previewcontainer')
+            );
+            container.src = '/' + url;
+
+            if (container.load) {
+                container.load();
+            }
+        }
     };
 
     return {
