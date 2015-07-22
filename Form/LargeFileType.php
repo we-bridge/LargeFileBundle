@@ -32,6 +32,11 @@ class LargeFileType extends AbstractType
         $resolver->setRequired(array('media'));
         $resolver->setRequired(array('mimeTypesMessage'));
         $resolver->setRequired(array('maxSizeMessage'));
+        $resolver->setOptional(array('previewContainerId'));
+
+        $resolver->setDefaults(array(
+            'previewContainerId' =>''
+        ));
     }
 
     /**
@@ -70,6 +75,7 @@ class LargeFileType extends AbstractType
         $view->vars['largefile_media'] = $options['media'];
         $view->vars['mimeTypesMessage'] = $options['mimeTypesMessage'];
         $view->vars['maxSizeMessage'] = $options['maxSizeMessage'];
+        $view->vars['previewContainerId'] = $options['previewContainerId'];
     }
 
     public function getName()
