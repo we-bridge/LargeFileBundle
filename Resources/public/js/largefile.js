@@ -20,7 +20,12 @@ var LargeFile = (function() {
         },
         success: function (files, data, xhr) {
             var inputField = document.getElementById(this.fileInput[0].id);
-            var largeFileField = document.getElementById(inputField.getAttribute('data-largefile-field'));
+            var largeFileField = document.getElementById(
+                inputField.getAttribute('data-largefile-field')
+            );
+            var largeFileFieldOriginal = document.getElementById(
+                inputField.getAttribute('data-largefile-field-original')
+            );
 
             getErrorPlaceHolder(inputField).html('');
 
@@ -31,8 +36,8 @@ var LargeFile = (function() {
                 uploadFinished(inputField, false);
                 return;
             }
-
             largeFileField.value = files.files[0].name;
+            largeFileFieldOriginal.value = files.files[0].originalName;
             //remove the required attribute of the input field
             //to allow form submission
             inputField.removeAttribute('required');                
