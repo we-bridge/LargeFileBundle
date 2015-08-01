@@ -2,7 +2,7 @@ services:
 
     webridge_largefile.upload_listener:
         class: Webridge\LargeFileBundle\EventListener\UploadListener
-        arguments: ["uploads%upload_video_rel_directory%"]
+        arguments: []
         tags:
             - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
 

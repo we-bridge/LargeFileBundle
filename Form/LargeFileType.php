@@ -57,6 +57,13 @@ class LargeFileType extends AbstractType
                         'mapped' => false
                     )
                 );
+                $form->getParent()->add(
+                    $form->getConfig()->getName() . 'OriginalName',
+                    'hidden',
+                    array(
+                        'mapped' => false
+                    )
+                );
             }
         );
     }
@@ -70,7 +77,9 @@ class LargeFileType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $view->vars['view_id_prefix'] = $view->parent->vars['id'] . '_';
         $view->vars['largefile_field'] = $form->getConfig()->getName() . 'Name';
+        $view->vars['largefile_field_original'] = $form->getConfig()->getName() . 'OriginalName';
         $view->vars['label'] = $options['label'];
         $view->vars['largefile_media'] = $options['media'];
         $view->vars['mimeTypesMessage'] = $options['mimeTypesMessage'];

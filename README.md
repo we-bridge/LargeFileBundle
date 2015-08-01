@@ -69,6 +69,7 @@ $builder
             'media' => 'video',
             'mimeTypesMessage' => "Upload only mp4",
             'maxSizeMessage' => "Maximum size is 40 MB",
+            'previewContainerId' => "previewVideo",
         ],
     )
 ```
@@ -79,6 +80,9 @@ The field will be displayed as an input file styled as a button using bootstrap 
 - `media`: refers to the mapping in OneupUploaderBundle's configuration
 - `mimeTypesMessage`: Localized error message to display for incorrect mime type input
 - `maxSizeMessage`: Localized error message to display if upload file is larger than the maximum size allowed
+- `previewContainerId`: Optional. Id of the video tag container which source will be updated upon upload
 
-The bundle will add an extra hidden field to the form with the name of the file field appended with the string "Name" (eg: videoFileName).
-This field can be used by the application to link the uploaded filename with an entity.
+The bundle will add two extra hidden fields to the form:
+- a field with the name of the file field appended with the string "Name" (eg: videoFileName).
+- a field with the name of the file field appended with the string "OriginalName" (eg: videoOriginalFileName).
+These fields can be used by the application to link the uploaded filename with an entity.

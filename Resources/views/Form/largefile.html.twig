@@ -16,8 +16,9 @@
         {{ form_widget(
                 form,
                 {'attr': {
-                    'class': form.vars.attr.class ~ ' largefile',
-                    'data-largefile-field': largefile_field,
+                    'class': (form.vars.attr is empty)?'largefile':form.vars.attr.class ~ ' largefile',
+                    'data-largefile-field': view_id_prefix ~ largefile_field,
+                    'data-largefile-field-original': view_id_prefix ~ largefile_field_original,
                     'data-mimeTypesMessage': mimeTypesMessage,
                     'data-maxSizeMessage': maxSizeMessage,
                     'data-url': oneup_uploader_endpoint(largefile_media),
@@ -28,7 +29,14 @@
         {{ form_widget(
                 attribute(form.parent, largefile_field),
                 {
-                    'id': largefile_field
+                    'id': view_id_prefix ~ largefile_field
+                }
+           ) 
+        }}
+        {{ form_widget(
+                attribute(form.parent, largefile_field_original),
+                {
+                    'id': view_id_prefix ~ largefile_field_original
                 }
            ) 
         }}
@@ -36,14 +44,14 @@
 
     {% endspaceless %}
 
-    <div class="error">
+    <div class="error largefile-error">
         <ul>
-            <li id="{{largefile_field}}_error">
+            <li id="{{view_id_prefix ~ largefile_field}}_error">
             </li>
         </ul>
     </div>
 
-    <div id="{{largefile_field}}_progress" class="largefile_progress progress">
+    <div id="{{view_id_prefix ~ largefile_field}}_progress" class="largefile_progress progress">
         <span class="bar progress-bar"></span>
     </div>
 

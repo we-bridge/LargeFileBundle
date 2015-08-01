@@ -6,22 +6,24 @@ use Oneup\UploaderBundle\Event\PostPersistEvent;
 
 class UploadListener
 {
-    private $uploadDirectory;
-
-    public function __construct($uploadDirectory)
-    {
-        $this->uploadDirectory = $uploadDirectory;
-    }
-
     public function onUpload(PostPersistEvent $event)
     {
         $response = $event->getResponse();
-        //$response['file_path'] = $this->uploadDirectory . $event->getFile()->getFilename();
+        $uploadDirectory = $event->getConfig()['storage']['directory'];
+
+        $fileBag = $event->getRequest()->files->all();
+        $uploadFile = null;
+        array_walk_recursive($fileBag, function($item, $key) use (&$uploadFile) {
+           if ($item instanceof \Symfony\Component\HttpFoundation\File\UploadedFile) {
+               $uploadFile = $item;
+           }
+        });
         $response['status'] = 'success';
         $response['files'] = array(
             array(
+                'originalName' => $uploadFile->getClientOriginalName(),
                 'name' => $event->getFile()->getFilename(),
-                'url' => $this->uploadDirectory . $event->getFile()->getFilename()
+                'url' => $uploadDirectory . '/' . $event->getFile()->getFilename()
             )
         );
         return $response;
