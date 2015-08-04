@@ -115,7 +115,10 @@ var LargeFile = (function() {
             var container = document.getElementById(
                 inputField.getAttribute('data-previewcontainer')
             );
-            container.src = '/' + url;
+            if (url.substring(0,1) !== '/') {
+                url = '/' + url;
+            }
+            container.src = url;
 
             if (container.load) {
                 container.load();
