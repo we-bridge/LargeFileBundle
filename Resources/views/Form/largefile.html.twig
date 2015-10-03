@@ -10,7 +10,17 @@
 
     {% spaceless %}
 
-    <span class="file-input btn btn-block panel-heading-highlighted btn-file">
+    <span 
+        id="{{ view_id_prefix ~ largefile_field }}-cancel"
+        class="btn btn-block btn-danger largefile-cancel hidden"
+    >
+            {{ cancelMessage }}
+    </span>
+
+    <span 
+        id="{{ view_id_prefix ~ largefile_field }}-upload"
+        class="file-input btn btn-block panel-heading-highlighted btn-file"
+    >
         {{ label }}
 
         {{ form_widget(

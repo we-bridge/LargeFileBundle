@@ -14,6 +14,9 @@ var LargeFile = (function() {
             var progress = parseInt(data.loaded / data.total * 100, 10);
             uploadProgress(this, progress);
         },
+        add: function (e, data) {
+            showCancel(this, data.submit());
+        },
         error: function(e, data) {
             var inputField = document.getElementById(this.fileInput[0].id);
             uploadFinished(inputField, false);
@@ -75,6 +78,7 @@ var LargeFile = (function() {
             );
             progressBar.html('');
         }
+        hideCancel(inputField);
     };
 
     var displayError = function(inputField, error) {
@@ -124,6 +128,32 @@ var LargeFile = (function() {
                 container.load();
             }
         }
+    };
+
+    var showCancel = function(inputField, uploader) {
+        
+        $('#' + inputField.getAttribute('data-largefile-field') + '-upload').
+            addClass('hidden');
+
+        var cancelButton = 
+            $('#' + inputField.getAttribute('data-largefile-field') + '-cancel');
+
+        cancelButton.removeClass('hidden');
+
+        cancelButton.click(function() { 
+            uploader.abort();
+        });
+    };
+
+    var hideCancel = function(inputField) {
+        
+        $('#' + inputField.getAttribute('data-largefile-field') + '-cancel').
+            addClass('hidden');
+
+        var uploadButton = 
+            $('#' + inputField.getAttribute('data-largefile-field') + '-upload');
+
+        uploadButton.removeClass('hidden');
     };
 
     return {
